@@ -69,7 +69,7 @@ public:
 	}
 
 	INLINEFORCE F32 CheckDeadzone(F32 value) const{
-		B8 sign = (0.0f < value) - (value < 0.0f);
+		I32 sign = (0.0f < value) - (value < 0.0f);
 		return (sign * value > m_deadzone)? (value - m_deadzone*sign)/(1.0f - m_deadzone): 0;
 	}
 
