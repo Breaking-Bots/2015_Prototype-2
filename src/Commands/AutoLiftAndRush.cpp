@@ -1,5 +1,9 @@
 #include "AutoLiftAndRush.h"
 
+#include "../Elon.h"
+#include "AutoBasicRush.h"
+#include "AutoLift.h"
+
 AutoLiftAndRush::AutoLiftAndRush()
 {
 	// Add Commands here:

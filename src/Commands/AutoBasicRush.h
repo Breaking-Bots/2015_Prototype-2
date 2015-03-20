@@ -7,9 +7,11 @@
 class AutoBasicRush: public CommandBase
 {
 private:
+	B8 m_reinit;
+public:
 	F32 m_time;
 	F32 m_speed;
-public:
+	AutoBasicRush();
 	AutoBasicRush(F32 time, F32 speed);
 	void Initialize();
 	void Execute();

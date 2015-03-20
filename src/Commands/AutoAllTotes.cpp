@@ -1,7 +1,9 @@
 #include "AutoAllTotes.h"
 
 #include "../Elon.h"
+#include "AutoBasicRush.h"
 #include "AutoLift.h"
+#include "AutoTurn.h"
 
 AutoAllTotes::AutoAllTotes()
 {

@@ -6,6 +6,9 @@
 #include "OI.h"
 #include "Typedefs_5428.h"
 #include "Vision.h"
+#include "Commands/AutoBasicRush.h"
+#include "Commands/AutoIdle.h"
+#include "Commands/AutoLiftAndRush.h"
 
 //TODO: IMPORTANT: CHECK GYRO AND PID CONTROL
 
@@ -103,13 +106,17 @@ public:
 	OI* oi;
 private:
 	Command *autonomousCommand;
+	SendableChooser* autoChooser;
 	LiveWindow *lw;
 	Preferences* prefs;
 
 	void RobotInit()
 	{
 		CommandBase::Init();
-		//autonomousCommand = new ExampleCommand();
+		autoChooser = new SendableChooser();
+		autoChooser->AddDefault("Forward Drive", new AutoBasicRush());
+		autoChooser->AddObject("Disable Autonomous", new AutoIdle());
+		autoChooser->AddObject("Lift and Drive", new AutoLiftAndRush());
 
 		oi = OI::GetInstance();
 		oi->Init();
@@ -132,6 +139,7 @@ private:
 	{
 		vAUTO_DRV_TIME = prefs->GetDouble("AUTO_RUN_TIME", dAUTO_DRV_TIME);
 		vAUTO_SPEED_A6 = prefs->GetDouble("AUTO_SPEED_A6", dAUTO_SPEED_A6);
+		autonomousCommand = (Command*) autoChooser->GetSelected();
 		if (autonomousCommand)autonomousCommand->Start();
 	}
 
